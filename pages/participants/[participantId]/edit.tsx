@@ -10,6 +10,7 @@ import Layout from "app/core/layouts/Layout"
 import getParticipant from "app/participants/queries/getParticipant"
 import updateParticipant from "app/participants/mutations/updateParticipant"
 import { ParticipantForm, FORM_ERROR } from "app/participants/components/ParticipantForm"
+import getTables from "app/tables/queries/getTables"
 
 export const EditParticipant = () => {
   const router = useRouter()
@@ -23,6 +24,9 @@ export const EditParticipant = () => {
     }
   )
   const [updateParticipantMutation] = useMutation(updateParticipant)
+  const [{ tables }] = useQuery(getTables, {
+    orderBy: { id: "asc" },
+  })
 
   return (
     <>
@@ -35,12 +39,11 @@ export const EditParticipant = () => {
         <pre>{JSON.stringify(participant, null, 2)}</pre>
 
         <ParticipantForm
-          submitText="Update Participant"
+          tables={tables}
           // TODO use a zod schema for form validation
           //  - Tip: extract mutation's schema into a shared `validations.ts` file and
           //         then import and use it here
           // schema={UpdateParticipant}
-          initialValues={participant}
           onSubmit={async (values) => {
             try {
               const updated = await updateParticipantMutation({

@@ -81,15 +81,6 @@ export const ParticipantsList = ({ filter }) => {
           ))}
         </tbody>
       </Table>
-      <ParticipantModal
-        onHide={() => setShowParticipant(false)}
-        couple={participant?.couple}
-        name={participant?.name}
-        surname={participant?.surname}
-        tableName={participant?.table.name}
-        status={participant?.status}
-        showParticipant={showParticipant}
-      />
       <div>
         <Pagination size="sm">
           <Pagination.Prev disabled={page === 0} onClick={goToPreviousPage}>
@@ -104,7 +95,7 @@ export const ParticipantsList = ({ filter }) => {
   )
 }
 
-const ParticipantsPage = () => {
+const GuestsPage = () => {
   const [filter, setFilter] = useState<string>("")
   const handleFilter = (value) => {
     if (value.length >= 3) {
@@ -147,4 +138,4 @@ const ParticipantsPage = () => {
   )
 }
 
-export default ParticipantsPage
+export default GuestsPage

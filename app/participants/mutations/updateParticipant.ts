@@ -5,6 +5,9 @@ import { z } from "zod"
 const UpdateParticipant = z.object({
   id: z.number(),
   name: z.string(),
+  surname: z.string(),
+  couple: z.boolean(),
+  tableId: z.number(),
 })
 
 export default resolver.pipe(

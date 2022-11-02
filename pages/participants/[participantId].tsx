@@ -35,7 +35,6 @@ export const Participant = () => {
           onClick={async () => {
             if (window.confirm("This will be deleted")) {
               await deleteParticipantMutation({ id: participant.id })
-              await router.push(Routes.ParticipantsPage())
             }
           }}
           style={{ marginLeft: "0.5rem" }}
@@ -50,12 +49,6 @@ export const Participant = () => {
 const ShowParticipantPage = () => {
   return (
     <div>
-      <p>
-        <Link href={Routes.ParticipantsPage()}>
-          <a>Participants</a>
-        </Link>
-      </p>
-
       <Suspense fallback={<div>Loading...</div>}>
         <Participant />
       </Suspense>

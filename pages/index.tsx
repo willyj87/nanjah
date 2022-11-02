@@ -1,8 +1,10 @@
 import Link from "next/link"
 import { Button, Card, Col, Container, Row } from "react-bootstrap"
 import Layout from "app/core/layouts/Layout"
+import { useSession } from "@blitzjs/auth"
 
 const Home = () => {
+  const session = useSession({ suspense: false })
   return (
     <Layout title="W&D">
       <Container fluid="md">
@@ -24,7 +26,7 @@ const Home = () => {
             <Card bg="danger">
               <Card.Img variant="top" src="/protocol.png" />
               <Card.Body>
-                <Link href="/auth/login">
+                <Link href={session.userId ? "/participants" : "/auth/login"}>
                   <Button variant="primary">Vous êtes du protocole</Button>
                 </Link>
               </Card.Body>

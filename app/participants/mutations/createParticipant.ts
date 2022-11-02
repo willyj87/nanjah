@@ -4,8 +4,8 @@ import { boolean, z } from "zod"
 
 const CreateParticipant = z.object({
   name: z.string(),
+  surname: z.string(),
   couple: z.boolean(),
-  status: boolean(),
   tableId: z.number(),
 })
 
