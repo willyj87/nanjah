@@ -63,3 +63,23 @@ model Token {
 // enum TokenType {
 //   RESET_PASSWORD
 // }
+
+model Participant {
+  id        Int      @id @default(autoincrement())
+  name      String
+  surname   String?
+  status    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  table     Table    @relation(fields: [tableId], references: [id])
+  tableId   Int
+  couple    Boolean  @default(false)
+}
+
+model Table {
+  id          Int           @id @default(autoincrement())
+  name        String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  Participant Participant[]
+}
